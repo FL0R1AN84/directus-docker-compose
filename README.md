@@ -22,10 +22,14 @@
 
 ```
 ADMIN_EMAIL: your@mail.tld
-ADMIN_PASSWORD: 'password'
 ```
 
 in docker-compose.yml 😉
+
+and update your admin user password:
+```
+npx directus users passwd --email user-email --password new-password
+```
 
 **Directus CLI-Documentation:**
 
