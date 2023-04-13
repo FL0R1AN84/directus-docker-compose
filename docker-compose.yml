@@ -9,7 +9,8 @@ services:
       POSTGRES_DB: directus
       POSTGRES_PASSWORD: directus
       POSTGRES_USER: directus
-    image: postgis/postgis:13-master
+    image: postgres:13
+    platform: linux/arm64/v8
     ports:
       - "5432:5432"
     volumes:
@@ -27,7 +28,6 @@ services:
         condition: service_started
     environment:
       ADMIN_EMAIL: your@mail.tld
-      ADMIN_PASSWORD: 'password'
       CACHE_ENABLED: "true"
       CACHE_REDIS: redis://cache:6379
       CACHE_STORE: redis

@@ -2,7 +2,7 @@
 
 ![directus](https://user-images.githubusercontent.com/522079/158864859-0fbeae62-9d7a-4619-b35e-f8fa5f68e0c8.png)
 
-## with PostGIS and Redis
+## with PostgreSQL and Redis (e.g. macOS with M1 and M2 CPUs)
 
 ---
 
@@ -22,10 +22,13 @@
 
 ```
 ADMIN_EMAIL: your@mail.tld
-ADMIN_PASSWORD: 'password'
 ```
-
 in docker-compose.yml 😉
+
+and update your admin user password:
+```
+npx directus users passwd --email user-email --password new-password
+```
 
 **Directus CLI-Documentation:**
 
