@@ -32,6 +32,11 @@ services:
       KEY: ${KEY:-08e94891-eb01-4ec8-929c-84da769e59df}
       SECRET: ${SECRET:-577ff8ab-12ef-44dc-baec-098240acbd4e}
     image: directus/directus:latest
+    ports:
+    - mode: ingress
+      target: 8055
+      published: "8055"
+      protocol: tcp
     networks:
       - default
     volumes:
