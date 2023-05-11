@@ -1,55 +1,41 @@
 name: directus
 services:
   cache:
-    container_name: cache
     image: redis:6
   database:
-    container_name: database
     environment:
       POSTGRES_DB: directus
-      POSTGRES_PASSWORD: directus
-      POSTGRES_USER: directus
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-directus}
+      POSTGRES_USER: ${DB_USER:-directus}
     image: postgis/postgis:13-master
-    ports:
-      - "5432:5432"
+    networks:
+      - default
     volumes:
-    - type: bind
-      source: ./data/database
-      target: /var/lib/postgresql/data
-      bind:
-        create_host_path: true
+    - postgres_data:/var/lib/postgresql/data
   directus:
-    container_name: directus
     depends_on:
       cache:
         condition: service_started
       database:
         condition: service_started
     environment:
-      ADMIN_EMAIL: your@mail.tld
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-your@email.address}
       CACHE_ENABLED: "true"
       CACHE_REDIS: redis://cache:6379
       CACHE_STORE: redis
       DB_CLIENT: pg
       DB_DATABASE: directus
       DB_HOST: database
-      DB_PASSWORD: directus
+      DB_PASSWORD: ${DB_PASSWORD:-directus}
       DB_PORT: "5432"
-      DB_USER: directus
-      KEY: 08e94891-eb01-4ec8-929c-84da769e59df
-      SECRET: 577ff8ab-12ef-44dc-baec-098240acbd4e
+      DB_USER: ${DB_USER:-directus}
+      KEY: ${KEY:-08e94891-eb01-4ec8-929c-84da769e59df}
+      SECRET: ${SECRET:-577ff8ab-12ef-44dc-baec-098240acbd4e}
     image: directus/directus:latest
-    ports:
-    - mode: ingress
-      target: 8055
-      published: "8055"
-      protocol: tcp
+    networks:
+      - default
     volumes:
-    - type: bind
-      source: ./uploads
-      target: /uploads
-      bind:
-        create_host_path: true
-networks:
-  directus:
-    name: directus_directus
+      - ./snapshot.yaml:/directus/snapshot.yaml
+      - ${DATA_PATH:-.}/uploads:/directus/uploads
+volumes:
+  postgres_data:

@@ -12,25 +12,28 @@
 
 #### Build and run your app with Compose
 
-`docker-compose up -d`
+```
+docker-compose up -d
+```
 
 #### and shut down
 
-`docker-compose down`
-
-**Don´t forget to change:**
-
 ```
-ADMIN_EMAIL: your@mail.tld
+docker-compose down
 ```
 
-in docker-compose.yml 😉
+Update your admin user password:
 
-and update your admin user password:
 ```
 npx directus users passwd --email user-email --password new-password
 ```
 
+Import snapshot.yaml:
+
+```
+  npx directus schema apply ./snapshot.yaml
+```
+
 **Directus CLI-Documentation:**
 
-https://docs.directus.io/self-hosted/cli.html
+<https://docs.directus.io/self-hosted/cli.html>
