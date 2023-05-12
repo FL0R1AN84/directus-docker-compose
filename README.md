@@ -16,7 +16,7 @@
 docker-compose up -d
 ```
 
-#### and shut down
+and shut down
 
 ```
 docker-compose down
