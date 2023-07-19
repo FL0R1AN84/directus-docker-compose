@@ -13,13 +13,13 @@
 #### Build and run your app with Compose
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 and shut down
 
 ```
-docker-compose down
+docker compose down
 ```
 
 Update your admin user password:
