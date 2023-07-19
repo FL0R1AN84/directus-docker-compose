@@ -21,7 +21,7 @@ services:
     environment:
       ADMIN_EMAIL: ${ADMIN_EMAIL:-your@email.address}
       CACHE_ENABLED: "true"
-      CACHE_REDIS: redis://cache:6379
+      REDIS: redis://cache:6379
       CACHE_STORE: redis
       DB_CLIENT: pg
       DB_DATABASE: directus
