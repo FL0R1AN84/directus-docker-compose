@@ -28,9 +28,9 @@ Update your admin user password:
 npx directus users passwd --email user-email --password new-password
 ```
 
-#### Import snapshot at startup:
+#### Import snapshot at startup
 
-When the container is started, the data is automatically imported from snapshot.yml
+When the container is started, the data is automatically imported from snapshot.yaml
 
 Create snapshot.yaml:
 
